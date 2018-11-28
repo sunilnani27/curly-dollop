@@ -66,7 +66,8 @@ public class App {
 		try {
 			session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			List<Student> studentsList = session.createQuery("from Student").list();
+			@SuppressWarnings("unchecked")
+			List<Student> studentsList = session.createQuery("from Student").getResultList();
 			for (Student student : studentsList) {
 				System.out.println("First Name: " + student.getFirstName() + " Last Name: " + student.getLastName()
 						+ " Email: " + student.getEmail());
@@ -99,7 +100,7 @@ public class App {
 		try {
 			session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Student student = session.get(Student.class, 1);
+			Student student = session.get(Student.class, 2);
 			session.delete(student);
 			session.getTransaction().commit();
 			System.out.println("student deleted successfully");
