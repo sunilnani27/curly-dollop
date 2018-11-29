@@ -19,7 +19,7 @@ public class DeletePerson {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			Person person = session.get(Person.class, 5);
+			Person person = session.get(Person.class, 9);
 
 			Address address  = person.getAddress();
 			address.setPerson(null);

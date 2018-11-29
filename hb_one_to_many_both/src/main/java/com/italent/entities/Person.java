@@ -29,11 +29,11 @@ public class Person {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@OneToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH}, fetch = FetchType.LAZY)
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@OneToMany(mappedBy = "person", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.MERGE,
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "person", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.MERGE,
 			CascadeType.PERSIST, CascadeType.REFRESH })
 	private List<Technology> technologies;
 

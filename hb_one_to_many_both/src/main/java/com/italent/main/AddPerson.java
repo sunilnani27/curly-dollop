@@ -35,6 +35,8 @@ public class AddPerson {
 			technology3.setPerson(person);
 
 			session.save(person);
+			
+			session.save(person.getAddress());
 
 			session.save(technology);
 			session.save(technology2);
