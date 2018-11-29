@@ -1,3 +1,11 @@
+/*Please run the sql file from one_to_one_uni.sql
+ * from src/main/resources.
+ * 
+ * By running the above sql we can set up the required stuff from backed.
+ * 
+ * 
+ * please change the username, password and database name in hibernate.config.xml inorder to run it */
+
 package com.italent.main;
 
 import org.hibernate.Session;

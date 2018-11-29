@@ -6,7 +6,13 @@
  * map the property with @OneToOne mapping and mentioning the attribute mappedBy with Perons's mapped property(address)
  * which s property of person entity.
  * 
- * should create default constructor to access the bidirectional data*/
+ * should create default constructor to access the bidirectional mapping i.e, Address entity only
+ * 
+ * in order to delete only the address not the person then use the cased all types except the cascade type REMOVE
+ * and before deleting break the bi-direction by setting the person as null
+ * 
+ * get the person and set the address of person as null and merge the person with in th session and remove the
+ * address. this way only we can delete only Join column data */
 
 package com.italent.entities;
 
@@ -33,7 +39,7 @@ public class Address {
 	@Column(name = "state")
 	private String state;
 
-	@OneToOne(mappedBy = "address", cascade = CascadeType.ALL)
+	@OneToOne(mappedBy = "address", cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
 	private Person person;
 
 	public Address() {
