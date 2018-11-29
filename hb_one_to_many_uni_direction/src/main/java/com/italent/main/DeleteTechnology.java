@@ -8,25 +8,29 @@ import com.italent.utils.DataBaseUtils;
 
 public class DeleteTechnology {
 
-	private static DataBaseUtils dbUtils = null;
+	private static DataBaseUtils dataBaseUtils = null;
 
 	public static void main(String[] args) {
-		dbUtils = new DataBaseUtils();
+		dataBaseUtils = new DataBaseUtils();
 
-		SessionFactory factory = dbUtils.getSessionFactory();
+		SessionFactory sessionFactory = dataBaseUtils.getSessionFactory();
 
 		try {
-			Session session = factory.getCurrentSession();
+			Session session = sessionFactory.getCurrentSession();
 			session.beginTransaction();
-			System.out.println("deleting the Tech");
-			Technology technology = session.get(Technology.class, 1);
+
+			Technology technology = session.get(Technology.class, 2);
+
+			// technology.setPerson(null);
+
 			session.delete(technology);
-			System.out.println("technology deleted successfully");
+
 			session.getTransaction().commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
-			factory.close();
+			sessionFactory.close();
 		}
 	}
 

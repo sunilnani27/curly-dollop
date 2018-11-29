@@ -3,10 +3,11 @@ package com.italent.main;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import com.italent.entities.Person;
 import com.italent.entities.Technology;
 import com.italent.utils.DataBaseUtils;
 
-public class DeleteTechnology {
+public class CreateTechnologies {
 
 	private static DataBaseUtils dbUtils = null;
 
@@ -18,10 +19,19 @@ public class DeleteTechnology {
 		try {
 			Session session = factory.getCurrentSession();
 			session.beginTransaction();
-			System.out.println("deleting the Tech");
-			Technology technology = session.get(Technology.class, 1);
-			session.delete(technology);
-			System.out.println("technology deleted successfully");
+			System.out.println("Saving the technologies");
+			Person person = session.get(Person.class, 1);
+			Technology javaScript = new Technology("Java Script");
+			Technology java = new Technology("Java");
+			Technology angular = new Technology("angular");
+			person.addTechnology(javaScript);
+			person.addTechnology(java);
+			person.addTechnology(angular);
+			
+			session.save(javaScript);
+			session.save(java);
+			session.save(angular);
+			System.out.println("technologies saved successfully");
 			session.getTransaction().commit();
 		} catch (Exception e) {
 			e.printStackTrace();

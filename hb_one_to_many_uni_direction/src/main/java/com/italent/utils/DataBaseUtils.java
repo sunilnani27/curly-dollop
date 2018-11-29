@@ -5,7 +5,6 @@ import org.hibernate.cfg.Configuration;
 
 import com.italent.entities.Address;
 import com.italent.entities.Person;
-import com.italent.entities.Review;
 import com.italent.entities.Technology;
 
 public class DataBaseUtils {
@@ -17,7 +16,6 @@ public class DataBaseUtils {
 					.addAnnotatedClass(Person.class)
 					.addAnnotatedClass(Address.class)
 					.addAnnotatedClass(Technology.class)
-					.addAnnotatedClass(Review.class)
 					.buildSessionFactory();
 		} catch (Exception e) {
 			e.printStackTrace();
